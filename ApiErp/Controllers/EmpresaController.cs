@@ -66,7 +66,7 @@ namespace ApiErp.Controllers
             {
                 resp.Success = false;
                 resp.ErrorList = new List<string>();
-                resp.ErrorList.Add("Empresa nao informado");
+                resp.ErrorList.Add("Empresa nao informada");
                 return resp;
             }
 
@@ -76,17 +76,18 @@ namespace ApiErp.Controllers
             {
                 resp.Success = false;
                 resp.ErrorList = new List<string>();
-                resp.ErrorList.Add("Nivel de empresa: " + id + " informado inexistente");
+                resp.ErrorList.Add("Empresa: " + id + " informada inexistente");
                 return resp;
             }
 
             // campos
+            empresa.id = id;
             
             try
             {
-                dao.Update(n);
+                dao.Update(empresa);
                 resp.Success = true;
-                resp.data = n;
+                resp.data = empresa;
 
                 return resp;
             }
@@ -258,7 +259,7 @@ namespace ApiErp.Controllers
                 {
                     resp.Success = false;
                     resp.ErrorList = new List<string>();
-                    resp.ErrorList.Add("Empresa pai invalida");
+                    resp.ErrorList.Add("Participante invalido");
                     return resp;
                 }
 
@@ -268,7 +269,7 @@ namespace ApiErp.Controllers
                 {
                     resp.Success = false;
                     resp.ErrorList = new List<string>();
-                    resp.ErrorList.Add("Tipo empresa pai: " + empresa.id_usuario_participante + " informado inexistente");
+                    resp.ErrorList.Add("Participante: " + empresa.id_usuario_participante + " informado inexistente");
                     return resp;
                 }
                 else
@@ -281,7 +282,7 @@ namespace ApiErp.Controllers
                         {
                             resp.Success = false;
                             resp.ErrorList = new List<string>();
-                            resp.ErrorList.Add("Usuario informado como correspondete não é um correspondente");
+                            resp.ErrorList.Add("Usuario informado não é um participante");
                             return resp;
                         }
                     }
@@ -289,7 +290,7 @@ namespace ApiErp.Controllers
                     {
                         resp.Success = false;
                         resp.ErrorList = new List<string>();
-                        resp.ErrorList.Add("Entidade corresponde não encontrado no sistema");
+                        resp.ErrorList.Add("Entidade Participante não encontrado no sistema");
                         return resp;
                     }
                 }
